@@ -5,7 +5,10 @@ function jsonval {
 	echo ${temp##*|}
 }
 
-node ./server.js | \
+PORT=$1
+BROWSER=$2
+
+node ./server.js $PORT $BROWSER | \
 while read CMD; do
 	echo $CMD
     if [[ ! $CMD == \#* ]]; then	

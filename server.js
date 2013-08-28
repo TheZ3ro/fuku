@@ -1,8 +1,10 @@
 var http = require("http"),
     url = require("url"),
     path = require("path"),
-    fs = require("fs")
-    port = process.argv[2] || 8888;
+    fs = require("fs"),
+    exec = require('child_process').exec,
+    port = process.argv[2] || 8888,
+    browser = process.argv[3] || "null";
     
 http.createServer(function(request, response) {
   	
@@ -80,3 +82,14 @@ http.createServer(function(request, response) {
 }).listen(parseInt(port, 10));
 
 console.log("# Static file server running at\n#  => http://localhost:" + port + "/\n# CTRL + C to shutdown");
+if(browser == "null"){
+  if(process.platform == "win32") { 
+	exec("start http://localhost:" + port);
+  } else if(process.platform == "darwin") { 
+	exec("start http://localhost:" + port);
+  } else if(process.platform == "linux") { 
+    exec("x-www-browser http://localhost:" + port);
+  }
+} else {
+	exec(browser+" http://localhost:"+port);
+}
