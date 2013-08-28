@@ -11,6 +11,9 @@ BROWSER=$2
 node ./server.js $PORT $BROWSER | \
 while read CMD; do
 	echo $CMD
+	if [[ $CMD == "END" ]]; then	
+		exit
+    fi
     if [[ ! $CMD == \#* ]]; then	
 		ping -c `jsonval $CMD count` `jsonval $CMD ip` 
     fi

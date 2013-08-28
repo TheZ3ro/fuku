@@ -14,12 +14,11 @@ http.createServer(function(request, response) {
     , uri = req.pathname  // request URI pathname /index.html
     , filename = path.join(process.cwd(), uri);  // request absolute filename
 
-  // console.log(method + " " + JSON.stringify(query, null, 2) + " " + uri);
-
   if(uri == "/exit"){
     response.writeHead(418, {"Content-Type": "text/plain"});
     response.write("418 I'm a teapot - Server is Closing\n");
     response.end();
+    console.log("END");
     process.exit(0);
   }
 
@@ -32,14 +31,6 @@ http.createServer(function(request, response) {
     request.on('end', function () {
 	  query = url.parse(uri+"?"+body, true).query
 	  console.log("{\"method\":\""+method+"\",\"uri\":\""+uri+"\",\"serial\":\""+body+"\",\"json\":"+JSON.stringify(query, null, 0)+"}");
-	  /*
-	  console.log("{");
-	  console.log("\"method\":\""+method+"\",");
-	  console.log("\"uri\":\""+uri+"\",");
-	  console.log("\"serial\":\""+body+"\",");
-	  console.log("\"json\":"+JSON.stringify(query, null, 0)+"");
-	  console.log("}");
-	  */
       response.writeHead(200, {"Content-Type": "text/plain"});
 	  response.write("Request Sent\n");
       response.end();
@@ -82,6 +73,7 @@ http.createServer(function(request, response) {
 }).listen(parseInt(port, 10));
 
 console.log("# Static file server running at\n#  => http://localhost:" + port + "/\n# CTRL + C to shutdown");
+
 if(browser == "null"){
   if(process.platform == "win32") { 
 	exec("start http://localhost:" + port);
@@ -91,5 +83,5 @@ if(browser == "null"){
     exec("x-www-browser http://localhost:" + port);
   }
 } else {
-	exec(browser+" http://localhost:"+port);
+  exec(browser+" http://localhost:"+port);
 }
