@@ -1,15 +1,20 @@
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>NodeJS GUI</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.22" />
+	<link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+
 <body>
-<h1>Inserisci il sito da pingare o l'indirizzo IP</h1>
-  <input id="test" type="text">
-  <button id="btn">PING!</button>
-  <script type="text/javascript">
-    var btn = document.getElementById("btn");
-    var input = document.getElementById("test");
-    btn.addEventListener('click', function(){
-        window.dump("__IP__=" + input.value + "\n");
-        window.dump("EOF" + "\n");
-    }, false);
-  </script>
+	<h1>Inserisci il sito da pingare o l'indirizzo IP</h1>
+	<form enctype="application/x-www-form-urlencoded" action="/bash" method="POST">
+		IP: <input  type="text" name="ip"><br/>
+		Count: <input  type="text" name="count"><br/>
+		<input type="submit" value="PING!"><br/>
+	</form> 
 </body>
+
 </html>
