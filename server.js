@@ -29,9 +29,14 @@ http.createServer(function(request, response) {
       //console.log("Partial body: " + body);
     });
     request.on('end', function () {
+	  var h = {};
 	  query = url.parse(uri+"?"+body, true).query
+	  if(query.redirect!=null){
+        h["Location"] = "http://localhost:"+port+query.redirect;
+	  }
 	  console.log("{\"method\":\""+method+"\",\"uri\":\""+uri+"\",\"serial\":\""+body+"\",\"json\":"+JSON.stringify(query, null, 0)+"}");
-      response.writeHead(200, {"Content-Type": "text/plain"});
+	  h["Content-Type"] = "text/plain";
+      response.writeHead(301, h);
 	  response.write("Request Sent\n");
       response.end();
       return;
