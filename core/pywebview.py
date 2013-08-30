@@ -6,13 +6,12 @@
 #  Author: thezero <silvethebest@yahoo.it>
 #  Start date: 29/08/2013  
 #  
-#  Compile this with:
+#  For distribution compile with:
 #  $ pyinstaller ./pywebview.py -F
 #
 
 import gtk
 import webkit
-import gobject
 import sys, warnings
 
 #Dichiarazione della home page

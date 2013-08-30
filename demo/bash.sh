@@ -12,7 +12,7 @@ function jsonval {
 	echo ${temp##*|}
 }
 
-../core/server.js `pwd`/pref.json | \
+fuku `dirname $(readlink -f $0)`/pref.json | \
 while read CMD; do
 	echo $CMD
 	if [[ $CMD == "END" ]]; then	

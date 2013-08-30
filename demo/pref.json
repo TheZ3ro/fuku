@@ -3,5 +3,5 @@
 	"width":600,
 	"height":500,
 	"port":8888,
-	"basedir":"./"
+	"basedir":"/opt/fuku/demo"
 }

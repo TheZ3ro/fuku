@@ -14,11 +14,15 @@ var http = require("http"),
     fs = require("fs"),
     exec = require('child_process').exec;
     
+var dir = process.cwd(),
+	port = 8888,
+	browser = "null";
+    
 if(process.argv[2] != null){ 
 	var pref = require(process.argv[2]),
-		dir = pref.basedir || process.cwd(),
-		port = pref.port || 8888,
-		browser = pref.browser || "null";
+		dir = pref.basedir,
+		port = pref.port,
+		browser = pref.browser;
 }
 
 http.createServer(function(request, response) {
@@ -94,16 +98,20 @@ http.createServer(function(request, response) {
 
 console.log("# Static file server running at\n#  => http://localhost:" + port + "/\n# CTRL + C to shutdown");
 
-if(browser == "null"){
+if(browser == "null" || browser == "default"){
   if(process.platform == "win32") { 
 	exec("start http://localhost:" + port);
   } else if(process.platform == "darwin") { 
-	exec("start http://localhost:" + port);
+	exec("open http://localhost:" + port);
   } else if(process.platform == "linux") { 
     exec("x-www-browser http://localhost:" + port);
   }
-} else if(browser == "webview"){
-  exec(__dirname+"/pywebview http://localhost:" + port + " "+pref.width+" "+pref.height);
+} else if(browser == "webview" || browser == "pywebview"){
+  if(fs.existsSync(__dirname+"/pywebview")){
+    exec(__dirname+"/pywebview http://localhost:" + port + " "+pref.width+" "+pref.height);
+  } else {
+    exec(__dirname+"/pywebview.py http://localhost:" + port + " "+pref.width+" "+pref.height);
+  }
 } else {
   exec(browser+" http://localhost:"+port);
 }
