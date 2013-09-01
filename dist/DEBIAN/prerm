@@ -1,0 +1,4 @@
+#! /bin/bash -e
+
+rm "/usr/bin/fuku"
+rm "/usr/bin/fuku-demo"

@@ -1,0 +1,4 @@
+#! /bin/bash -e
+
+ln -fs "/opt/fuku/fuku" "/usr/bin/fuku"
+ln -fs "/opt/fuku/demo/fuku-demo" "/usr/bin/fuku-demo"

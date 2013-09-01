@@ -1,0 +1,12 @@
+Package: fuku
+Version: 0.1.1-alpha
+Section: devel
+Maintainer: Davide TheZero <silvetti.davide@gmail.com>
+Homepage: http://thez3ro.github.io/fuku.html
+Priority: optional
+Architecture: all
+Description: Fuku
+ Make HTML GUI.
+
+
+
