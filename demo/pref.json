@@ -1,0 +1,7 @@
+{
+	"browser":"webview",
+	"width":600,
+	"height":500,
+	"port":8888,
+	"basedir":"/opt/fuku/demo"
+}
