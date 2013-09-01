@@ -17,8 +17,6 @@ if (( EUID == 0 )); then
 	cp -r ./uninstall.sh $DESTINATION
 	chmod -R 777 $DESTINATION
 	cd $DESTINATION
-	mv ./server.js "$PNAME"
-	mv ./demo/bash.sh "./demo/$PNAME-demo"
 
 	if [ ! -e "/usr/bin/$PNAME" ]; then
 		ln -s "$DESTINATION/$PNAME" /usr/bin/
